@@ -1,0 +1,254 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+html {
+  @apply antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  @apply m-0 p-0 min-h-screen text-base;
+}
+
+/* Theme transitions */
+* {
+  @apply transition-colors duration-150 ease-in-out;
+}
+
+/* Mobile-first responsive breakpoints */
+@layer utilities {
+  .container-responsive {
+    @apply w-full px-4 mx-auto max-w-full sm:max-w-[640px] sm:px-6 md:max-w-[768px] md:px-8 lg:max-w-[1024px] xl:max-w-[1280px] 2xl:max-w-[1536px];
+  }
+}
+
+/* Responsive Typography */
+@layer base {
+  html {
+    @apply text-[14px] sm:text-[15px] lg:text-[16px];
+  }
+}
+
+/* Dark Mode */
+.dark-theme {
+  --bg-primary: #0f172a;
+  --text-primary: #f3f4f6;
+  --text-secondary: #d1d5db;
+  --card-bg: rgba(30, 41, 59, 0.7);
+  --card-border: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  min-height: 100vh;
+  transition: background-color 150ms ease-in-out;
+}
+
+/* Mobile-optimized scrolling */
+.smooth-scroll {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Touch-friendly buttons and interactive elements */
+@layer components {
+  .touch-target {
+    @apply min-h-[44px] min-w-[44px];
+  }
+  
+  .touch-safe-area {
+    padding-bottom: env(safe-area-inset-bottom);
+    padding-top: env(safe-area-inset-top);
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+  }
+}
+
+/* Responsive Card Styles */
+.glass-card {
+  @apply rounded-xl transition-all duration-150 ease-in-out;
+  border: 1px solid var(--card-border);
+}
+
+.dark-theme .glass-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Responsive hover effects - disabled on touch devices */
+@media (hover: hover) {
+  .glass-card-hover:hover {
+    transform: translateY(-2px);
+  }
+
+  .dark-theme .glass-card-hover:hover {
+    background: rgba(30, 41, 59, 0.85);
+    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Responsive Chart Styles */
+.dark-theme .recharts-cartesian-grid-horizontal line,
+.dark-theme .recharts-cartesian-grid-vertical line {
+  stroke: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme .recharts-text {
+  fill: rgba(255, 255, 255, 0.8) !important;
+}
+
+.dark-theme .recharts-legend-item-text {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Responsive Table Styles */
+.responsive-table-container {
+  @apply w-full overflow-x-auto -mx-4 px-4 sm:mx-0 sm:px-0;
+}
+
+.dark-theme th {
+  @apply bg-gray-800/50 text-gray-300;
+}
+
+.dark-theme td {
+  @apply text-gray-200 border-gray-700;
+}
+
+.dark-theme tr:hover {
+  @apply bg-gray-800/30;
+}
+
+/* Optimized Scrollbar */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.3) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  @apply w-1.5;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply rounded-full bg-gray-300/30;
+}
+
+.dark-theme .custom-scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-600/50;
+}
+
+/* Theme Toggle Animation */
+.theme-toggle {
+  @apply transition-transform duration-150;
+}
+
+@media (hover: hover) {
+  .theme-toggle:hover {
+    @apply rotate-12;
+  }
+}
+
+/* Responsive Modal and Drawer Styles */
+.modal-content,
+.drawer-content {
+  @apply max-h-[90vh] overflow-y-auto sm:max-h-[85vh];
+}
+
+.dark-theme .modal-content,
+.dark-theme .drawer-content {
+  @apply bg-gray-800 text-gray-200;
+}
+
+/* Responsive Input Styles */
+.dark-theme input,
+.dark-theme select {
+  @apply bg-gray-700 border-gray-600 text-gray-200;
+}
+
+/* Responsive Button Styles */
+.dark-theme button {
+  @apply text-gray-200;
+}
+
+.dark-theme button:hover {
+  @apply bg-gray-700;
+}
+
+/* Responsive Text Styles */
+.dark-theme .text-primary {
+  @apply text-gray-100;
+}
+
+.dark-theme .text-secondary {
+  @apply text-gray-400;
+}
+
+/* Status Colors */
+.dark-theme .status-positive {
+  @apply text-green-400;
+}
+
+.dark-theme .status-negative {
+  @apply text-red-400;
+}
+
+/* Card Inner Content */
+.dark-theme .card-content {
+  @apply text-gray-300;
+}
+
+/* Section Headers */
+.dark-theme .section-header {
+  @apply text-gray-100 font-semibold;
+}
+
+/* Value Display */
+.dark-theme .value-display {
+  @apply text-gray-100 font-bold;
+}
+
+/* Label Text */
+.dark-theme .label-text {
+  @apply text-gray-400;
+}
+
+/* Mobile Navigation */
+.mobile-nav-overlay {
+  @apply fixed inset-0 bg-black/50 backdrop-blur-sm z-40 lg:hidden;
+}
+
+/* Responsive Grid Layouts */
+.responsive-grid {
+  @apply grid gap-4;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+}
+
+/* Loading States */
+.skeleton-loading {
+  @apply animate-pulse bg-gray-200 dark:bg-gray-700 rounded;
+}
+
+/* Focus States */
+.focus-ring {
+  @apply focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800;
+}
+
+/* Print Styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  
+  .print-only {
+    display: block !important;
+  }
+  
+  body {
+    print-color-adjust: exact;
+  }
+}
